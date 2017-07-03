@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://impl.service.com" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://impl.service.com" xmlns:intf="http://impl.service.com" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://model.service.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema targetNamespace="http://model.service.com" xmlns="http://www.w3.org/2001/XMLSchema">
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Address">
+    <sequence>
+     <element name="addressLine1" nillable="true" type="xsd:string"/>
+     <element name="addressLine2" nillable="true" type="xsd:string"/>
+     <element name="city" nillable="true" type="xsd:string"/>
+     <element name="pincode" nillable="true" type="xsd:string"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getAddressRequest">
+
+      <wsdl:part name="id" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="getAddressResponse">
+
+      <wsdl:part name="getAddressReturn" type="tns1:Address">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="AddressServiceImpl">
+
+      <wsdl:operation name="getAddress" parameterOrder="id">
+
+         <wsdl:input message="impl:getAddressRequest" name="getAddressRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:getAddressResponse" name="getAddressResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="AddressServiceImplSoapBinding" type="impl:AddressServiceImpl">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="getAddress">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getAddressRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://impl.service.com" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getAddressResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://impl.service.com" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="AddressServiceImplService">
+
+      <wsdl:port binding="impl:AddressServiceImplSoapBinding" name="AddressServiceImpl">
+
+         <wsdlsoap:address location="http://localhost:8081/SoapWebservice-API/services/AddressServiceImpl"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>
